@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tracking — H&M Aviation</title>
+  <meta name="description" content="Track your H&M Aviation shipment in real time. Enter your tracking code to view details and live status." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body data-page="tracking">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./">
+        <span class="brand-logo"><i class="fa-solid fa-plane-up"></i></span>
+        <span class="brand-text">H&M Aviation</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="./dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="./shipments.html"><i class="fa-solid fa-boxes-stacked"></i> Shipments</a></li>
+        <li><a href="./flights.html"><i class="fa-solid fa-jet-fighter-up"></i> Flights</a></li>
+        <li class="active"><a href="./tracking.html"><i class="fa-solid fa-magnifying-glass-location"></i> Tracking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Tracking</h1>
+    <section class="card">
+      <form id="form-tracking" class="tracking-form">
+        <div class="input-group lg">
+          <i class="fa-solid fa-barcode"></i>
+          <input type="text" id="tracking-code" placeholder="Enter tracking code (e.g., HM-1A2B3C)" required />
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-location-crosshairs"></i> Track</button>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="simulate-switch" />
+          <span class="slider"></span>
+          <span class="label">Simulate real-time updates</span>
+        </label>
+      </form>
+    </section>
+
+    <section class="card" id="tracking-result" hidden>
+      <div class="tracking-header">
+        <div>
+          <h2 id="track-code"></h2>
+          <p id="track-summary" class="muted"></p>
+        </div>
+        <span id="track-status-badge" class="badge">Status</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" id="track-progress" style="width: 0%"></div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="card-subtitle">Shipment details</h3>
+          <ul class="detail-list">
+            <li><strong>Sender:</strong> <span id="detail-sender"></span></li>
+            <li><strong>Recipient:</strong> <span id="detail-recipient"></span></li>
+            <li><strong>Origin:</strong> <span id="detail-origin"></span></li>
+            <li><strong>Destination:</strong> <span id="detail-destination"></span></li>
+            <li><strong>Weight:</strong> <span id="detail-weight"></span> kg</li>
+            <li><strong>Assigned Flight:</strong> <span id="detail-flight"></span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="card-subtitle">Status timeline</h3>
+          <ul class="timeline" id="track-history"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card danger" id="tracking-error" hidden>
+      <p><i class="fa-solid fa-triangle-exclamation"></i> Tracking code not found. Please verify and try again.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> H&M Aviation</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
