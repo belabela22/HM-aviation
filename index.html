@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>H&M Aviation — Airborne Clothing Shipments</title>
+  <meta name="description" content="H&M Aviation manages clothing shipments sent by airplane. Track shipments, manage flights, and view live stats." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-O8C3b2K0y5j7rNqz4fK3F8J8cZpPzK9n0wNfK3cQ8m4x1eC7bJt2mQ6bGJzRkGvS2IuQW6S2d0jG5F5XvdO7xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24'%3E%3Cpath fill='%23B81C1C' d='M2 13l7-2 3-9 3 9 7 2-7 2-3 7-3-7-7-2z'/%3E%3C/svg%3E" />
+</head>
+<body data-page="landing">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./">
+        <span class="brand-logo"><i class="fa-solid fa-plane-up"></i></span>
+        <span class="brand-text">H&M Aviation</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="./dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="./shipments.html"><i class="fa-solid fa-boxes-stacked"></i> Shipments</a></li>
+        <li><a href="./flights.html"><i class="fa-solid fa-jet-fighter-up"></i> Flights</a></li>
+        <li><a href="./tracking.html"><i class="fa-solid fa-magnifying-glass-location"></i> Tracking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="plane-layer">
+          <span class="plane"></span>
+          <span class="plane delay-1"></span>
+          <span class="plane delay-2"></span>
+          <span class="plane delay-3"></span>
+        </div>
+        <div class="clouds"></div>
+      </div>
+      <div class="hero-content">
+        <h1>Airborne logistics for modern apparel</h1>
+        <p class="subtitle">Manage clothing shipments with precision, speed, and clarity—powered by real-time flight data and streamlined workflows.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="./tracking.html"><i class="fa-solid fa-location-arrow"></i> Track a shipment</a>
+          <a class="btn btn-ghost" href="./dashboard.html"><i class="fa-solid fa-gauge-high"></i> Open dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-row container">
+      <article class="feature-card">
+        <i class="fa-solid fa-plane-arrival feature-icon"></i>
+        <h3>Flight-aware</h3>
+        <p>Assign packages to flights, monitor ETD/ETA, and keep your pipeline moving on schedule.</p>
+      </article>
+      <article class="feature-card">
+        <i class="fa-solid fa-box-open feature-icon"></i>
+        <h3>Shipment-centric</h3>
+        <p>Search, filter, and update status from pending to delivered with one intuitive interface.</p>
+      </article>
+      <article class="feature-card">
+        <i class="fa-solid fa-chart-line feature-icon"></i>
+        <h3>Actionable insights</h3>
+        <p>See trends with charts and recent activity feeds to make timely decisions.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> H&M Aviation — All shipments fly with care.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
