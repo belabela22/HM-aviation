@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard — H&M Aviation</title>
+  <meta name="description" content="Dashboard overview: shipments, flights, package statuses, and activity feed." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body data-page="dashboard">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./">
+        <span class="brand-logo"><i class="fa-solid fa-plane-up"></i></span>
+        <span class="brand-text">H&M Aviation</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links">
+        <li class="active"><a href="./dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="./shipments.html"><i class="fa-solid fa-boxes-stacked"></i> Shipments</a></li>
+        <li><a href="./flights.html"><i class="fa-solid fa-jet-fighter-up"></i> Flights</a></li>
+        <li><a href="./tracking.html"><i class="fa-solid fa-magnifying-glass-location"></i> Tracking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Dashboard</h1>
+
+    <section class="cards-grid">
+      <div class="card stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-box"></i></div>
+        <div class="stat-body">
+          <h3>Total Shipments</h3>
+          <p class="stat-value" id="stat-total-shipments">0</p>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-plane"></i></div>
+        <div class="stat-body">
+          <h3>Active Flights</h3>
+          <p class="stat-value" id="stat-active-flights">0</p>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="stat-body">
+          <h3>Pending Packages</h3>
+          <p class="stat-value" id="stat-pending">0</p>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="stat-body">
+          <h3>Delivered Packages</h3>
+          <p class="stat-value" id="stat-delivered">0</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h2 class="card-title">Shipment status distribution</h2>
+        <canvas id="chart-status" height="160"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Shipments over last 7 days</h2>
+        <canvas id="chart-trend" height="160"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="card-title">Recent activity</h2>
+      <ul class="activity-feed" id="activity-feed"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> H&M Aviation</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
