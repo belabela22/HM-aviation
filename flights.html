@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flights — H&M Aviation</title>
+  <meta name="description" content="Manage active and upcoming flights. Assign shipments and view flight details." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body data-page="flights">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./">
+        <span class="brand-logo"><i class="fa-solid fa-plane-up"></i></span>
+        <span class="brand-text">H&M Aviation</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="./dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="./shipments.html"><i class="fa-solid fa-boxes-stacked"></i> Shipments</a></li>
+        <li class="active"><a href="./flights.html"><i class="fa-solid fa-jet-fighter-up"></i> Flights</a></li>
+        <li><a href="./tracking.html"><i class="fa-solid fa-magnifying-glass-location"></i> Tracking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Flights</h1>
+      <div class="page-actions">
+        <button class="btn btn-primary" id="btn-add-flight"><i class="fa-solid fa-plus"></i> Add flight</button>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="table-responsive">
+        <table class="table" id="table-flights">
+          <thead>
+            <tr>
+              <th>Flight No.</th>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>ETD</th>
+              <th>ETA</th>
+              <th>Assigned Packages</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody><!-- populated by JS --></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Flight modal (add/edit) -->
+  <div class="modal" id="modal-flight" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog">
+      <header class="modal-header">
+        <h3 id="flight-modal-title">Flight</h3>
+        <button class="icon-btn" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <div class="modal-body">
+        <form id="form-flight">
+          <input type="hidden" name="id" />
+          <div class="form-row">
+            <label>Flight Number
+              <input name="number" type="text" placeholder="e.g., HM412" required />
+            </label>
+            <label>Origin
+              <input name="origin" type="text" placeholder="e.g., LHR" required />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Destination
+              <input name="destination" type="text" placeholder="e.g., JFK" required />
+            </label>
+            <label>ETD
+              <input name="etd" type="datetime-local" required />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>ETA
+              <input name="eta" type="datetime-local" required />
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-danger" id="btn-delete-flight"><i class="fa-solid fa-trash"></i> Delete</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Flight drawer (details) -->
+  <aside class="drawer" id="drawer-flight" aria-hidden="true">
+    <div class="drawer-panel">
+      <header class="drawer-header">
+        <h3 id="drawer-title">Flight Details</h3>
+        <button class="icon-btn" id="drawer-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <div class="drawer-body">
+        <div class="drawer-meta" id="drawer-meta"></div>
+        <h4>Assigned Shipments</h4>
+        <div class="table-responsive compact">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Tracking</th>
+                <th>Sender</th>
+                <th>Recipient</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="drawer-shipments"></tbody>
+          </table>
+        </div>
+
+        <h4>Assign new shipment</h4>
+        <div class="form-row">
+          <select id="assign-shipment-select">
+            <option value="">Select a pending shipment...</option>
+          </select>
+          <button class="btn btn-primary" id="btn-assign-shipment"><i class="fa-solid fa-link"></i> Assign</button>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  </aside>
+
+  <!-- Confirm modal -->
+  <div class="modal" id="modal-confirm" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog">
+      <header class="modal-header">
+        <h3>Confirm action</h3>
+        <button class="icon-btn" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <div class="modal-body">
+        <p id="confirm-message">Are you sure?</p>
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-danger" id="confirm-yes">Yes</button>
+        <button class="btn btn-ghost" data-close-modal>No</button>
+      </footer>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> H&M Aviation</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
