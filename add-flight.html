@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Flight — H&M Aviation</title>
+  <meta name="description" content="Create a new flight in H&M Aviation." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body data-page="add-flight">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./">
+        <span class="brand-logo"><i class="fa-solid fa-plane-up"></i></span>
+        <span class="brand-text">H&M Aviation</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="./dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="./shipments.html"><i class="fa-solid fa-boxes-stacked"></i> Shipments</a></li>
+        <li class="active"><a href="./flights.html"><i class="fa-solid fa-jet-fighter-up"></i> Flights</a></li>
+        <li><a href="./tracking.html"><i class="fa-solid fa-magnifying-glass-location"></i> Tracking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Add flight</h1>
+      <div class="page-actions">
+        <a class="btn btn-ghost" href="./flights.html"><i class="fa-solid fa-arrow-left"></i> Back</a>
+      </div>
+    </div>
+
+    <section class="card">
+      <form id="form-add-flight">
+        <div class="form-row">
+          <label>Flight Number
+            <input name="number" type="text" placeholder="e.g., HM412" required />
+          </label>
+          <label>Origin
+            <input name="origin" type="text" placeholder="e.g., LHR" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Destination
+            <input name="destination" type="text" placeholder="e.g., JFK" required />
+          </label>
+          <label>ETD
+            <input name="etd" type="datetime-local" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>ETA
+            <input name="eta" type="datetime-local" required />
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Create</button>
+          <a class="btn btn-ghost" href="./flights.html">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> H&M Aviation</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/add-flight.js"></script>
+</body>
+</html>
